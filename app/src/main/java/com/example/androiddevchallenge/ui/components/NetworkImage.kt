@@ -1,4 +1,4 @@
-package com.example.androiddevchallenge.utils
+package com.example.androiddevchallenge.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme

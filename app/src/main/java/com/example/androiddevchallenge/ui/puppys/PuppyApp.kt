@@ -1,35 +1,21 @@
 package com.example.androiddevchallenge.ui.puppys
 
-import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.animateDp
-import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.GridCells
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyVerticalGrid
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.ColorFilter
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.model.Puppy
 import com.example.androiddevchallenge.ui.components.StaggeredVerticalGrid
-import com.example.androiddevchallenge.ui.theme.Color_000000
-import com.example.androiddevchallenge.utils.NetworkImage
+import com.example.androiddevchallenge.ui.components.NetworkImage
 
 /**
  * Created by wanbo on 2021/2/27.
