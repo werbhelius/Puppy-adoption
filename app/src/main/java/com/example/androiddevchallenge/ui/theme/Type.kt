@@ -26,7 +26,9 @@ import com.example.androiddevchallenge.R
 // Set of Material typography styles to start with
 
 val Ubuntu = FontFamily(
-    Font(R.font.ubuntu_bold, weight = FontWeight.Bold)
+    Font(R.font.ubuntu_bold, weight = FontWeight.Bold),
+    Font(R.font.ubuntu_medium, weight = FontWeight.Medium),
+    Font(R.font.ubuntu_regular, weight = FontWeight.Normal)
 )
 
 val typography = Typography(
@@ -34,5 +36,19 @@ val typography = Typography(
         fontFamily = Ubuntu,
         fontWeight = FontWeight.Bold,
         fontSize = 28.sp
+    ),
+    h6 = TextStyle(
+        fontFamily = Ubuntu,
+        fontWeight = FontWeight.Medium,
+        fontSize = 20.sp,
+        lineHeight = 24.sp,
+        letterSpacing = 0.15.sp
+    ),
+    body2 = TextStyle(
+        fontFamily = Ubuntu,
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.25.sp
     )
 )
