@@ -22,7 +22,7 @@ import com.example.androiddevchallenge.ui.components.NetworkImage
  */
 
 @Composable
-fun PuppyApp(vm: PuppyViewModel = PuppyViewModel()) {
+fun PuppyList(selectPuppy: (String) -> Unit, vm: PuppyViewModel) {
 
     val isGrid: Boolean by vm.isGrid.observeAsState(true)
 
@@ -31,7 +31,7 @@ fun PuppyApp(vm: PuppyViewModel = PuppyViewModel()) {
             .verticalScroll(rememberScrollState())
     ) {
         PuppyAppBar(isGrid, vm::onGridChanged)
-        PuppyGridList(puppys = vm.puppies, isGrid = isGrid)
+        PuppyGridList(puppys = vm.puppies, isGrid = isGrid, selectPuppy = selectPuppy)
     }
 }
 
@@ -68,7 +68,7 @@ fun PuppyAppBar(isGrid: Boolean, onGridChanged:(Boolean) -> Unit) {
                 .clickable {
                     onGridChanged(!isGrid)
                 },
-            painter = painterResource(id = if (isGrid) R.drawable.ic_baseline_grid else R.drawable.ic_view_list ),
+            painter = painterResource(id = if (isGrid) R.drawable.ic_baseline_grid else R.drawable.ic_grid_off ),
             contentDescription = null,
             colorFilter = ColorFilter.tint(color = MaterialTheme.colors.primary)
         )
@@ -77,22 +77,22 @@ fun PuppyAppBar(isGrid: Boolean, onGridChanged:(Boolean) -> Unit) {
 }
 
 @Composable
-fun PuppyGridList(puppys: List<Puppy>, isGrid: Boolean) {
+fun PuppyGridList(puppys: List<Puppy>, isGrid: Boolean, selectPuppy: (String) -> Unit) {
     StaggeredVerticalGrid(
         maxColumnWidth = if (isGrid) 220.dp else 800.dp,
         modifier = Modifier.padding(4.dp)
     ) {
         puppys.forEach { puppy ->
-            PuppyItem(puppy)
+            PuppyItem(puppy, selectPuppy)
         }
     }
 }
 
 @Composable
-fun PuppyItem(puppy: Puppy) {
+fun PuppyItem(puppy: Puppy, selectPuppy: (String) -> Unit) {
     Surface(
         shape = MaterialTheme.shapes.medium,
-        modifier = Modifier.padding(4.dp),
+        modifier = Modifier.padding(4.dp).clickable { selectPuppy(puppy.id) },
         elevation = 2.dp
     ) {
         Column {
