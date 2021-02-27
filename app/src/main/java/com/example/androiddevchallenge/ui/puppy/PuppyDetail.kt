@@ -6,6 +6,7 @@ import androidx.compose.foundation.shape.ZeroCornerSize
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Favorite
 import androidx.compose.material.icons.twotone.ArrowBack
 import androidx.compose.material.icons.twotone.Favorite
 import androidx.compose.runtime.Composable
@@ -16,6 +17,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import com.example.androiddevchallenge.model.Puppy
+import com.example.androiddevchallenge.ui.components.NetworkImage
 import com.example.androiddevchallenge.ui.puppys.PuppyViewModel
 import dev.chrisbanes.accompanist.coil.CoilImage
 
@@ -36,17 +38,12 @@ fun PuppyDetail(puppyID: String, upPress: () -> Unit, vm: PuppyViewModel) {
                 .align(Alignment.TopStart)
                 .padding(start = 4.dp)
         ) {
-            Icon(imageVector = Icons.TwoTone.ArrowBack, contentDescription = "Arrow back icon")
+            Icon(imageVector = Icons.TwoTone.ArrowBack, contentDescription = null)
         }
 
-        CoilImage(
-            data = puppy.imageUrl,
-            contentDescription = "Puppy picture",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .fillMaxHeight(fraction = 0.45f)
-                .fillMaxWidth()
-        )
+        NetworkImage(url = puppy.imageUrl, modifier = Modifier
+            .fillMaxHeight(fraction = 0.45f)
+            .fillMaxWidth())
 
         Card(
             shape = MaterialTheme.shapes.large.copy(
@@ -63,7 +60,7 @@ fun PuppyDetail(puppyID: String, upPress: () -> Unit, vm: PuppyViewModel) {
 
         AdoptPuppyButton(
             modifier = Modifier
-                .align(Alignment.BottomCenter),
+                .align(Alignment.BottomEnd),
             onClick = { /*TODO*/ }
         )
     }
@@ -72,11 +69,10 @@ fun PuppyDetail(puppyID: String, upPress: () -> Unit, vm: PuppyViewModel) {
 @Composable
 private fun AdoptPuppyButton(modifier: Modifier, onClick: () -> Unit) {
     ExtendedFloatingActionButton(
-        icon = { Icon(Icons.TwoTone.Favorite, contentDescription = "Adopt button icon") },
+        icon = { Icon(Icons.Rounded.Favorite, contentDescription = null) },
         text = { Text(text = "ADOPTION") },
         onClick = onClick,
         modifier = modifier
-            .fillMaxWidth()
             .padding(24.dp),
         elevation = FloatingActionButtonDefaults.elevation(defaultElevation = 2.dp, pressedElevation = 6.dp)
     )

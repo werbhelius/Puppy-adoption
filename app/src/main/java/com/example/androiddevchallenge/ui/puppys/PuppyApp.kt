@@ -24,7 +24,7 @@ import com.example.androiddevchallenge.ui.components.NetworkImage
 @Composable
 fun PuppyList(selectPuppy: (String) -> Unit, vm: PuppyViewModel) {
 
-    val isGrid: Boolean by vm.isGrid.observeAsState(true)
+    val isGrid: Boolean by vm.isGrid.observeAsState(vm.isGrid.value!!)
 
     Column(
         modifier = Modifier
