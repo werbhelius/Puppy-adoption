@@ -3,6 +3,10 @@ package com.example.androiddevchallenge.ui.puppys
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Favorite
+import androidx.compose.material.icons.rounded.FavoriteBorder
+import androidx.compose.material.icons.twotone.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
@@ -11,7 +15,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.zIndex
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.model.Puppy
 import com.example.androiddevchallenge.ui.components.StaggeredVerticalGrid
@@ -31,7 +38,7 @@ fun PuppyList(selectPuppy: (String) -> Unit, vm: PuppyViewModel) {
             .verticalScroll(rememberScrollState())
     ) {
         PuppyAppBar(isGrid, vm::onGridChanged)
-        PuppyGridList(puppys = vm.puppies, isGrid = isGrid, selectPuppy = selectPuppy)
+        PuppyGridList(puppys = vm.puppies, isGrid = isGrid, selectPuppy = selectPuppy, vm::onPuppyAdoption)
     }
 }
 
@@ -77,30 +84,46 @@ fun PuppyAppBar(isGrid: Boolean, onGridChanged:(Boolean) -> Unit) {
 }
 
 @Composable
-fun PuppyGridList(puppys: List<Puppy>, isGrid: Boolean, selectPuppy: (String) -> Unit) {
+fun PuppyGridList(puppys: List<Puppy>, isGrid: Boolean, selectPuppy: (String) -> Unit,  adoptionPuppy: (Puppy) -> Unit) {
     StaggeredVerticalGrid(
         maxColumnWidth = if (isGrid) 220.dp else 800.dp,
         modifier = Modifier.padding(4.dp)
     ) {
         puppys.forEach { puppy ->
-            PuppyItem(puppy, selectPuppy)
+            PuppyItem(puppy, selectPuppy, adoptionPuppy)
         }
     }
 }
 
 @Composable
-fun PuppyItem(puppy: Puppy, selectPuppy: (String) -> Unit) {
+fun PuppyItem(puppy: Puppy, selectPuppy: (String) -> Unit, adoptionPuppy: (Puppy) -> Unit) {
     Surface(
         shape = MaterialTheme.shapes.medium,
-        modifier = Modifier.padding(4.dp).clickable { selectPuppy(puppy.id) },
+        modifier = Modifier
+            .padding(4.dp)
+            .clickable { selectPuppy(puppy.id) },
         elevation = 2.dp
     ) {
         Column {
-            NetworkImage(
-                url = puppy.imageUrl, modifier = Modifier
-                    .fillMaxWidth()
-                    .height(173.dp)
-            )
+
+            val isAdoption by remember { mutableStateOf(puppy.isAdoption) }
+
+            Box {
+                NetworkImage(
+                    url = puppy.imageUrl, modifier = Modifier
+                        .fillMaxWidth()
+                        .height(173.dp)
+                )
+                IconButton(
+                    onClick = { adoptionPuppy(puppy.also { it.isAdoption = !it.isAdoption }) },
+                    modifier = Modifier
+                        .zIndex(8f)
+                        .align(Alignment.TopStart)
+                        .padding(start = 0.dp)
+                ) {
+                    Icon(imageVector = if (isAdoption) Icons.Rounded.Favorite else Icons.Rounded.FavoriteBorder, contentDescription = null)
+                }
+            }
 
             Column(modifier = Modifier.padding(16.dp, 14.dp, 16.dp, 12.dp)) {
                 Text(

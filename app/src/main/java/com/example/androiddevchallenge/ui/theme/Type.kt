@@ -37,6 +37,11 @@ val typography = Typography(
         fontWeight = FontWeight.Bold,
         fontSize = 28.sp
     ),
+    h3 = TextStyle(
+        fontFamily = Ubuntu,
+        fontWeight = FontWeight.Normal,
+        fontSize = 20.sp
+    ),
     h6 = TextStyle(
         fontFamily = Ubuntu,
         fontWeight = FontWeight.Medium,
@@ -50,5 +55,11 @@ val typography = Typography(
         fontSize = 14.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.25.sp
-    )
+    ),
+    button = TextStyle(
+        fontFamily = Ubuntu,
+        fontWeight = FontWeight.Medium,
+        fontSize = 14.sp,
+        lineHeight = 16.sp,
+        letterSpacing = 1.25.sp)
 )

@@ -28,7 +28,8 @@ private val DarkColorPalette = darkColors(
     background = Color_121212,
     surface = Color_121212,
     onBackground = Color_FFFFFF,
-    onSurface = Color_FFFFFF.copy(alpha = 0.87f)
+    onSurface = Color_FFFFFF.copy(alpha = 0.87f),
+    onPrimary = Color_121212
 )
 
 private val LightColorPalette = lightColors(
@@ -38,7 +39,8 @@ private val LightColorPalette = lightColors(
     background = Color_FFFFFF,
     surface = Color_FFFFFF,
     onBackground = Color_000000,
-    onSurface = Color_000000.copy(alpha = 0.87f)
+    onSurface = Color_000000.copy(alpha = 0.87f),
+    onPrimary = Color_FFFFFF
 
         /* Other default colors to override
     background = Color.White,

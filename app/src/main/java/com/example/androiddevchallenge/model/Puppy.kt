@@ -7,26 +7,27 @@ import java.text.DecimalFormat
  * Created by wanbo on 2021/2/27.
  */
 data class Puppy(
-    val id: String,
+    var id: String,
     val name: String,
     val age: Double,
     val sex: Sex,
     val color: String,
     val weight: Double,
     val type: TYPE,
-    val imageUrl: String
+    val imageUrl: String,
+    var isAdoption: Boolean
     ) {
 
     fun labels(): List<String> {
         return listOf(type.desc, "${age.format()} years", sex.desc, color, "${weight.format()} kg")
     }
 
-    fun Double.format(): String {
-        val format = DecimalFormat("0.#")
-        format.roundingMode = RoundingMode.FLOOR
-        return format.format(this)
-    }
+}
 
+fun Double.format(): String {
+    val format = DecimalFormat("0.#")
+    format.roundingMode = RoundingMode.FLOOR
+    return format.format(this)
 }
 
 enum class Sex(val desc: String) {
