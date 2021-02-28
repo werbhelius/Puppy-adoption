@@ -1,3 +1,18 @@
+/*
+ * Copyright 2021 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.example.androiddevchallenge.ui.puppys
 
 import androidx.compose.runtime.getValue
@@ -6,20 +21,20 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.androiddevchallenge.model.Sex
 import com.example.androiddevchallenge.model.Puppy
+import com.example.androiddevchallenge.model.Sex
 import com.example.androiddevchallenge.model.TYPE
 import java.util.*
 
 /**
  * Created by wanbo on 2021/2/27.
  */
-class PuppyViewModel: ViewModel() {
+class PuppyViewModel : ViewModel() {
 
     private val _isGrid = MutableLiveData(true)
     val isGrid: LiveData<Boolean> = _isGrid
 
-    private var _puppies = listOf<Puppy>(
+    private var _puppies = listOf(
         Puppy(
             id = UUID.randomUUID().toString(),
             name = "Bella",
@@ -108,12 +123,6 @@ class PuppyViewModel: ViewModel() {
 
     fun onPuppyAdoption(puppy: Puppy) {
         val index = puppies.toMutableList().indexOfFirst { it.id == puppy.id }
-        println(puppy)
-        println(puppies[index])
-        println(puppy == puppies[index])
         puppies = puppies.toMutableList().also { it[index] = puppy }
     }
-
-
-
 }

@@ -61,5 +61,6 @@ val typography = Typography(
         fontWeight = FontWeight.Medium,
         fontSize = 14.sp,
         lineHeight = 16.sp,
-        letterSpacing = 1.25.sp)
+        letterSpacing = 1.25.sp
+    )
 )

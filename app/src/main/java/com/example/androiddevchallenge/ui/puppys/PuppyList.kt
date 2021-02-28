@@ -1,30 +1,57 @@
+/*
+ * Copyright 2021 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.example.androiddevchallenge.ui.puppys
 
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material.*
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.absolutePadding
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Favorite
 import androidx.compose.material.icons.rounded.FavoriteBorder
-import androidx.compose.material.icons.twotone.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.zIndex
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.model.Puppy
-import com.example.androiddevchallenge.ui.components.StaggeredVerticalGrid
 import com.example.androiddevchallenge.ui.components.NetworkImage
+import com.example.androiddevchallenge.ui.components.StaggeredVerticalGrid
 
 /**
  * Created by wanbo on 2021/2/27.
@@ -45,7 +72,7 @@ fun PuppyList(selectPuppy: (String) -> Unit, vm: PuppyViewModel) {
 }
 
 @Composable
-fun PuppyAppBar(isGrid: Boolean, onGridChanged:(Boolean) -> Unit) {
+fun PuppyAppBar(isGrid: Boolean, onGridChanged: (Boolean) -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -67,7 +94,7 @@ fun PuppyAppBar(isGrid: Boolean, onGridChanged:(Boolean) -> Unit) {
                 .absolutePadding(left = 16.dp)
                 .align(Alignment.CenterVertically)
         )
-        
+
         Spacer(modifier = Modifier.weight(1f))
 
         Image(
@@ -77,16 +104,15 @@ fun PuppyAppBar(isGrid: Boolean, onGridChanged:(Boolean) -> Unit) {
                 .clickable {
                     onGridChanged(!isGrid)
                 },
-            painter = painterResource(id = if (isGrid) R.drawable.ic_baseline_grid else R.drawable.ic_grid_off ),
+            painter = painterResource(id = if (isGrid) R.drawable.ic_baseline_grid else R.drawable.ic_grid_off),
             contentDescription = null,
             colorFilter = ColorFilter.tint(color = MaterialTheme.colors.primary)
         )
-
     }
 }
 
 @Composable
-fun PuppyGridList(puppys: List<Puppy>, isGrid: Boolean, selectPuppy: (String) -> Unit,  adoptionPuppy: (Puppy) -> Unit) {
+fun PuppyGridList(puppys: List<Puppy>, isGrid: Boolean, selectPuppy: (String) -> Unit, adoptionPuppy: (Puppy) -> Unit) {
     StaggeredVerticalGrid(
         maxColumnWidth = if (isGrid) 220.dp else 800.dp,
         modifier = Modifier.padding(4.dp)
@@ -110,7 +136,8 @@ fun PuppyItem(puppy: Puppy, selectPuppy: (String) -> Unit, adoptionPuppy: (Puppy
 
             Box {
                 NetworkImage(
-                    url = puppy.imageUrl, modifier = Modifier
+                    url = puppy.imageUrl,
+                    modifier = Modifier
                         .fillMaxWidth()
                         .height(173.dp)
                 )
@@ -163,7 +190,6 @@ fun PuppyLabel(labels: List<String>) {
                     )
                 }
             }
-
         }
     }
 }
