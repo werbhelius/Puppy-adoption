@@ -2,6 +2,8 @@ package com.example.androiddevchallenge.ui.puppys
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Favorite
@@ -106,8 +108,6 @@ fun PuppyItem(puppy: Puppy, selectPuppy: (String) -> Unit, adoptionPuppy: (Puppy
     ) {
         Column {
 
-            val isAdoption by remember { mutableStateOf(puppy.isAdoption) }
-
             Box {
                 NetworkImage(
                     url = puppy.imageUrl, modifier = Modifier
@@ -115,13 +115,13 @@ fun PuppyItem(puppy: Puppy, selectPuppy: (String) -> Unit, adoptionPuppy: (Puppy
                         .height(173.dp)
                 )
                 IconButton(
-                    onClick = { adoptionPuppy(puppy.also { it.isAdoption = !it.isAdoption }) },
+                    onClick = { adoptionPuppy(puppy.copy(isAdoption = !puppy.isAdoption)) },
                     modifier = Modifier
                         .zIndex(8f)
                         .align(Alignment.TopStart)
                         .padding(start = 0.dp)
                 ) {
-                    Icon(imageVector = if (isAdoption) Icons.Rounded.Favorite else Icons.Rounded.FavoriteBorder, contentDescription = null)
+                    Icon(imageVector = if (puppy.isAdoption) Icons.Rounded.Favorite else Icons.Rounded.FavoriteBorder, contentDescription = null)
                 }
             }
 

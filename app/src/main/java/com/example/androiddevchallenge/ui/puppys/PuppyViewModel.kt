@@ -107,7 +107,10 @@ class PuppyViewModel: ViewModel() {
     }
 
     fun onPuppyAdoption(puppy: Puppy) {
-        val index = puppies.indexOf(puppy)
+        val index = puppies.toMutableList().indexOfFirst { it.id == puppy.id }
+        println(puppy)
+        println(puppies[index])
+        println(puppy == puppies[index])
         puppies = puppies.toMutableList().also { it[index] = puppy }
     }
 

@@ -9,8 +9,10 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Cabin
 import androidx.compose.material.icons.rounded.Favorite
+import androidx.compose.material.icons.rounded.FavoriteBorder
 import androidx.compose.material.icons.twotone.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -84,17 +86,21 @@ fun PuppyDetail(puppyID: String, upPress: () -> Unit, vm: PuppyViewModel) {
         }
 
         AdoptPuppyButton(
+            puppy = puppy,
             modifier = Modifier
                 .align(Alignment.BottomEnd),
-            onClick = { /*TODO*/ }
+            onClick = {
+                vm.onPuppyAdoption(puppy.copy(isAdoption = !puppy.isAdoption))
+                puppy.isAdoption = !puppy.isAdoption
+            }
         )
     }
 }
 
 @Composable
-private fun AdoptPuppyButton(modifier: Modifier, onClick: () -> Unit) {
+private fun AdoptPuppyButton(puppy: Puppy, modifier: Modifier, onClick: () -> Unit) {
     ExtendedFloatingActionButton(
-        icon = { Icon(Icons.Rounded.Favorite, contentDescription = null) },
+        icon = { Icon(if (puppy.isAdoption) Icons.Rounded.Favorite else Icons.Rounded.FavoriteBorder, contentDescription = null) },
         text = { Text(text = "ADOPTION", style = MaterialTheme.typography.button, color = MaterialTheme.colors.onPrimary) },
         onClick = onClick,
         modifier = modifier
