@@ -24,7 +24,6 @@ import androidx.lifecycle.ViewModel
 import com.example.androiddevchallenge.model.Puppy
 import com.example.androiddevchallenge.model.Sex
 import com.example.androiddevchallenge.model.TYPE
-import java.util.*
 
 /**
  * Created by wanbo on 2021/2/27.
@@ -36,7 +35,7 @@ class PuppyViewModel : ViewModel() {
 
     private var _puppies = listOf(
         Puppy(
-            id = UUID.randomUUID().toString(),
+            id = "Bella01",
             name = "Bella",
             age = 1.0,
             type = TYPE.ShihTzu,
@@ -47,7 +46,7 @@ class PuppyViewModel : ViewModel() {
             isAdoption = false
         ),
         Puppy(
-            id = UUID.randomUUID().toString(),
+            id = "Daisy02",
             name = "Daisy",
             age = 1.3,
             type = TYPE.SpringerSpaniel,
@@ -58,7 +57,7 @@ class PuppyViewModel : ViewModel() {
             isAdoption = false
         ),
         Puppy(
-            id = UUID.randomUUID().toString(),
+            id = "Molly03",
             name = "Molly",
             age = 0.8,
             type = TYPE.Pomeranian,
@@ -69,7 +68,7 @@ class PuppyViewModel : ViewModel() {
             isAdoption = false
         ),
         Puppy(
-            id = UUID.randomUUID().toString(),
+            id = "Sophie04",
             name = "Sophie",
             age = 2.0,
             type = TYPE.Beagle,
@@ -80,7 +79,7 @@ class PuppyViewModel : ViewModel() {
             isAdoption = false
         ),
         Puppy(
-            id = UUID.randomUUID().toString(),
+            id = "Coco05",
             name = "Coco",
             age = 1.5,
             type = TYPE.Terrier,
@@ -91,7 +90,7 @@ class PuppyViewModel : ViewModel() {
             isAdoption = false
         ),
         Puppy(
-            id = UUID.randomUUID().toString(),
+            id = "Nala06",
             name = "Nala",
             age = 2.0,
             type = TYPE.Pug,
@@ -102,7 +101,7 @@ class PuppyViewModel : ViewModel() {
             isAdoption = false
         ),
         Puppy(
-            id = UUID.randomUUID().toString(),
+            id = "Abby07",
             name = "Abby",
             age = 1.0,
             type = TYPE.Maltese,
