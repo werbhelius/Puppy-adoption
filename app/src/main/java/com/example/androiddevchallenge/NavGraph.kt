@@ -45,8 +45,6 @@ fun NavGraph(startDestination: String = MainDestinations.PUPPY_LIST) {
     val vm = PuppyViewModel()
     val actions = remember(navController) { MainActions(navController) }
 
-
-
     NavHost(
         navController = navController,
         startDestination = startDestination
